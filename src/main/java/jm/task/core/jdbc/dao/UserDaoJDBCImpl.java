@@ -36,7 +36,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        String query = "drop table `new_schema`.`users`";
+        String query = "drop table if exists `new_schema`.`users`";
         try {
             connection.prepareStatement(query).execute();
         } catch (SQLException e) {
@@ -53,6 +53,7 @@ public class UserDaoJDBCImpl implements UserDao {
             ps.setString(2, lastName);
             ps.setInt(3, age);
             ps.executeUpdate();
+            System.out.println("User с именем – " + name + " добавлен в базу данных");
         } catch (SQLException e) {
             System.out.println("some sheep with adding user");
             e.printStackTrace(System.out);
@@ -81,7 +82,6 @@ public class UserDaoJDBCImpl implements UserDao {
                 User user = new User(resultSet.getNString(2), resultSet.getNString(3), resultSet.getByte(4));
                 userList.add(user);
             }
-
         } catch (SQLException e) {
             System.out.println("some sheep with deleting user");
             e.printStackTrace(System.out);
@@ -90,6 +90,12 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-
+        String query = "truncate table new_schema.users";
+        try {
+            connection.prepareStatement(query).execute();
+        } catch (SQLException e) {
+            System.out.println("some sheep with cleaning user table");
+            e.printStackTrace(System.out);
+        }
     }
 }

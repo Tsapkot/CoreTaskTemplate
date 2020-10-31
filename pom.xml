@@ -14,22 +14,22 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>7</source>
-                    <target>7</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
-<!--         Ваши зависимости-->
-         <!-- https://mvnrepository.com/artifact/junit/junit -->
-         <dependency>
-             <groupId>junit</groupId>
-             <artifactId>junit</artifactId>
-             <version>4.12</version>
-             <scope>test</scope>
-         </dependency>
+        <!--         Ваши зависимости-->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
@@ -48,6 +48,6 @@
             <artifactId>hibernate-core</artifactId>
             <version>4.3.10.Final</version>
         </dependency>
-     </dependencies>
+    </dependencies>
 
 </project>

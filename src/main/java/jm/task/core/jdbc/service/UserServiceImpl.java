@@ -33,7 +33,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public void cleanUsersTable() {
-        userDaoJDBC.dropUsersTable();
-        userDaoJDBC.createUsersTable();
+        userDaoJDBC.cleanUsersTable();
     }
 }
