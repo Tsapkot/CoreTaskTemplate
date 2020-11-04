@@ -1,17 +1,26 @@
 package jm.task.core.jdbc.util;
 
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class Util {
-    private static final String username = "root";
-    private static final String password = "Lostsoul7007";
-    private static final String url = "jdbc:mysql://localhost:3306/new_schema?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     private Connection connection;
 
     public Connection getConnection() {
+        Properties properties = new Properties();
+
+        try (FileInputStream fis = new FileInputStream("src\\main\\java\\jm\\task\\core\\jdbc\\util\\config.properties")) {
+            properties.load(fis);
+        } catch (IOException e) {
+            System.out.println("properties не читаются");
+            e.printStackTrace(System.out);
+        }
+
         try {
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("username"), properties.getProperty("password"));
         } catch (SQLException e) {
             System.out.println("Connection failure");
             e.printStackTrace(System.out);
