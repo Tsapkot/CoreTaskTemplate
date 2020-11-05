@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
+    private static UserDaoJDBCImpl userDaoJDBC;
     private Connection connection;
 
-    public UserDaoJDBCImpl() {
+    private UserDaoJDBCImpl() {
         Util util = new Util();
         this.connection = util.getConnection();
         try {
@@ -21,6 +22,13 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static UserDaoJDBCImpl getUserDaoJDBC() {
+        if (userDaoJDBC == null) {
+            userDaoJDBC = new UserDaoJDBCImpl();
+        }
+        return userDaoJDBC;
     }
 
     public void createUsersTable() {

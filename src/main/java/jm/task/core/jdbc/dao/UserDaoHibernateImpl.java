@@ -7,12 +7,19 @@ import org.hibernate.*;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
+    private static UserDaoHibernateImpl userDaoHibernate;
     private SessionFactory sessionFactory;
 
-    public UserDaoHibernateImpl() {
+    private UserDaoHibernateImpl() {
         sessionFactory = new UtilHibernate().getSessionFactory();
     }
 
+    public static UserDaoHibernateImpl getUserDaoHibernate() {
+        if (userDaoHibernate == null) {
+            userDaoHibernate = new UserDaoHibernateImpl();
+        }
+        return userDaoHibernate;
+    }
 
     @Override
     public void createUsersTable() {
